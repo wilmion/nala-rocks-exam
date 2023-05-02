@@ -11,13 +11,23 @@ import {
   TableBody,
   TableCell,
 } from "@material-ui/core";
+import { TableMetadata } from "./TableMetadata";
+
+import type { IMetadataCsv } from "../../interface/app.interfaces";
 
 interface Props {
   readonly headers: string[];
   readonly bodyData: Array<string[]>;
+  readonly metadata: IMetadataCsv[];
 }
 
-export const TableCustom = ({ headers, bodyData }: Props) => {
+export const TableCustom = ({ headers, bodyData, metadata }: Props) => {
+  const findMetadata = (text: string) => {
+    const contain = metadata.find((meta) => meta.key === text);
+
+    return contain;
+  };
+
   return (
     <TableStyled>
       <TableContainer component={Paper}>
@@ -43,6 +53,7 @@ export const TableCustom = ({ headers, bodyData }: Props) => {
                     align={iBDCell !== 0 ? "right" : "left"}
                   >
                     {bodyText}
+                    <TableMetadata metadata={findMetadata(bodyText)} />
                   </TableCell>
                 ))}
               </TableRow>

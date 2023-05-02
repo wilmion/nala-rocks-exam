@@ -7,8 +7,11 @@ import { TableActions } from "./components/TableActions";
 import { TableTotal } from "./components/Table/TableTotal";
 import { TableCustom } from "./components/Table";
 
+import type { IMetadataCsv } from "./interface/app.interfaces";
+
 function App() {
   const [data, setData] = useState<string[][]>([[]]);
+  const [metadata, setMetadata] = useState<IMetadataCsv[]>([]);
 
   const existCSV = useMemo(() => {
     return data[0] && data[0].length > 0;
@@ -28,8 +31,16 @@ function App() {
     <div>
       <Header />
       <PrimordialLayoutStyled>
-        <TableActions onLoadCsv={setData} existCSV={existCSV} />
-        <TableCustom headers={data[0]} bodyData={bodyData} />
+        <TableActions
+          onLoadCsv={setData}
+          existCSV={existCSV}
+          onLoadMetadata={setMetadata}
+        />
+        <TableCustom
+          headers={data[0]}
+          bodyData={bodyData}
+          metadata={metadata}
+        />
         <TableTotal total={total} />
       </PrimordialLayoutStyled>
     </div>

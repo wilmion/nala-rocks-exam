@@ -13,6 +13,11 @@ export const TableStyled = styled.section`
   .t-row-body:nth-of-type(odd) {
     background-color: rgba(30, 36, 50, 0.1);
   }
+
+  .t-row-body-mtd {
+    font-size: 12px;
+    font-weight: 600;
+  }
 `;
 
 export const TableTotalStyled = styled.section`
