@@ -1,8 +1,15 @@
-import React, { memo, useCallback } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
 
 import { TableActionsStyled } from "../../styles/components/table-actions.styled";
 
-import { Button } from "@material-ui/core";
+import {
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectProps,
+} from "@material-ui/core";
 
 interface Props {
   readonly onLoadCsv?: (csv: Array<string[]>) => void;
@@ -10,6 +17,23 @@ interface Props {
 }
 
 export const TableActions = memo<Props>(({ onLoadCsv, existCSV }) => {
+  const [month, setMonth] = useState("");
+  const [csvData, setCsvData] = useState<Array<string[]>>([[]]);
+
+  const months = useMemo(() => {
+    const bodyData = csvData.filter((_, i) => i !== 0);
+
+    const result: string[] = [];
+
+    bodyData.forEach((row) => {
+      const exist = result.find((r) => r === row[0]);
+
+      if (!exist) result.push(row[0]);
+    });
+
+    return result;
+  }, [csvData]);
+
   const handleImportCsv = useCallback(() => {
     const input = document.createElement("input");
     input.type = "file";
@@ -30,7 +54,7 @@ export const TableActions = memo<Props>(({ onLoadCsv, existCSV }) => {
         results.push(information);
       });
 
-      if (onLoadCsv) onLoadCsv(results);
+      setCsvData(results);
     };
 
     input.onchange = function (event) {
@@ -42,7 +66,26 @@ export const TableActions = memo<Props>(({ onLoadCsv, existCSV }) => {
     };
 
     input.click();
-  }, [onLoadCsv]);
+  }, []);
+
+  const handleChangeMonth: SelectProps["onChange"] = (event) => {
+    setMonth(event.target.value as string);
+  };
+
+  const handleFilterMonth = useCallback(() => {
+    const result = csvData.filter((data) => data[0] === month);
+    const data = [[...csvData[0]], ...result];
+
+    console.log(data);
+
+    if (onLoadCsv && data[1]) onLoadCsv(data);
+  }, [csvData, month, onLoadCsv]);
+
+  useEffect(() => {
+    if (months[0]) setMonth(months[0]);
+  }, [months]);
+
+  useEffect(handleFilterMonth, [handleFilterMonth]);
 
   return (
     <TableActionsStyled>
@@ -62,6 +105,26 @@ export const TableActions = memo<Props>(({ onLoadCsv, existCSV }) => {
         >
           Export as CSV
         </Button>
+
+        {existCSV && (
+          <FormControl>
+            <InputLabel id="month-select-label">Month</InputLabel>
+            <Select
+              labelId="month-select-label"
+              id="month-select"
+              label="Month"
+              className="t-a-control-select"
+              value={month}
+              onChange={handleChangeMonth}
+            >
+              {months.map((month) => (
+                <MenuItem key={`month-select-item-${month}`} value={month}>
+                  {month}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        )}
 
         {!existCSV && (
           <Button

@@ -20,4 +20,8 @@ export const TableActionsStyled = styled.section`
     display: flex;
     column-gap: 18px;
   }
+
+  .t-a-control-select {
+    width: 120px;
+  }
 `;

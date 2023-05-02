@@ -26,7 +26,7 @@ export const TableCustom = ({ headers, bodyData }: Props) => {
             <TableRow>
               {headers.map((header, index) => (
                 <TableCell
-                  key={`table-cell-header-${header}-{index}`}
+                  key={`table-cell-header-${header}-${index}`}
                   align={index !== 0 ? "right" : "left"}
                 >
                   {header}
@@ -39,7 +39,7 @@ export const TableCustom = ({ headers, bodyData }: Props) => {
               <TableRow key={`table-row-body-${iBData}`} className="t-row-body">
                 {data.map((bodyText, iBDCell) => (
                   <TableCell
-                    key={`table-row-body-${iBData}-cell-${bodyText}`}
+                    key={`table-row-body-${iBData}-cell-${bodyText}-${iBDCell}`}
                     align={iBDCell !== 0 ? "right" : "left"}
                   >
                     {bodyText}
