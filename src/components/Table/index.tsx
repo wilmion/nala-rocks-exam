@@ -12,98 +12,41 @@ import {
   TableCell,
 } from "@material-ui/core";
 
-export const TableCustom = () => {
+interface Props {
+  readonly headers: string[];
+  readonly bodyData: Array<string[]>;
+}
+
+export const TableCustom = ({ headers, bodyData }: Props) => {
   return (
     <TableStyled>
       <TableContainer component={Paper}>
         <Table aria-label="asdaw">
           <TableHead>
             <TableRow>
-              <TableCell>Nombre</TableCell>
-              <TableCell align="right">ID</TableCell>
-              <TableCell align="right">Mes</TableCell>
-              <TableCell align="right">Entry date</TableCell>
-              <TableCell align="right">Division</TableCell>
-              <TableCell align="right">Area</TableCell>
-              <TableCell align="right">Sub-area</TableCell>
-              <TableCell align="right">ID Lider</TableCell>
-              <TableCell align="right">Nivel Jerarquico</TableCell>
-              <TableCell align="right">Gross salary</TableCell>
+              {headers.map((header, index) => (
+                <TableCell
+                  key={`table-cell-header-${header}-{index}`}
+                  align={index !== 0 ? "right" : "left"}
+                >
+                  {header}
+                </TableCell>
+              ))}
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow className="t-row-body">
-              <TableCell>Juan Perez</TableCell>
-              <TableCell align="right">3456345336</TableCell>
-              <TableCell align="right">5-2020</TableCell>
-              <TableCell align="right">01/04/2019</TableCell>
-              <TableCell align="right">Ventas</TableCell>
-              <TableCell align="right">Marketing</TableCell>
-              <TableCell align="right">Digital</TableCell>
-              <TableCell align="right">32818181</TableCell>
-              <TableCell align="right">Manager</TableCell>
-              <TableCell align="right">800000 USD</TableCell>
-            </TableRow>
-            <TableRow className="t-row-body">
-              <TableCell>Juan Perez</TableCell>
-              <TableCell align="right">3456345336</TableCell>
-              <TableCell align="right">5-2020</TableCell>
-              <TableCell align="right">01/04/2019</TableCell>
-              <TableCell align="right">Ventas</TableCell>
-              <TableCell align="right">Marketing</TableCell>
-              <TableCell align="right">Digital</TableCell>
-              <TableCell align="right">32818181</TableCell>
-              <TableCell align="right">Manager</TableCell>
-              <TableCell align="right">800000 USD</TableCell>
-            </TableRow>
-            <TableRow className="t-row-body">
-              <TableCell>Juan Perez</TableCell>
-              <TableCell align="right">3456345336</TableCell>
-              <TableCell align="right">5-2020</TableCell>
-              <TableCell align="right">01/04/2019</TableCell>
-              <TableCell align="right">Ventas</TableCell>
-              <TableCell align="right">Marketing</TableCell>
-              <TableCell align="right">Digital</TableCell>
-              <TableCell align="right">32818181</TableCell>
-              <TableCell align="right">Manager</TableCell>
-              <TableCell align="right">800000 USD</TableCell>
-            </TableRow>
-            <TableRow className="t-row-body">
-              <TableCell>Juan Perez</TableCell>
-              <TableCell align="right">3456345336</TableCell>
-              <TableCell align="right">5-2020</TableCell>
-              <TableCell align="right">01/04/2019</TableCell>
-              <TableCell align="right">Ventas</TableCell>
-              <TableCell align="right">Marketing</TableCell>
-              <TableCell align="right">Digital</TableCell>
-              <TableCell align="right">32818181</TableCell>
-              <TableCell align="right">Manager</TableCell>
-              <TableCell align="right">800000 USD</TableCell>
-            </TableRow>
-            <TableRow className="t-row-body">
-              <TableCell>Juan Perez</TableCell>
-              <TableCell align="right">3456345336</TableCell>
-              <TableCell align="right">5-2020</TableCell>
-              <TableCell align="right">01/04/2019</TableCell>
-              <TableCell align="right">Ventas</TableCell>
-              <TableCell align="right">Marketing</TableCell>
-              <TableCell align="right">Digital</TableCell>
-              <TableCell align="right">32818181</TableCell>
-              <TableCell align="right">Manager</TableCell>
-              <TableCell align="right">800000 USD</TableCell>
-            </TableRow>
-            <TableRow className="t-row-body">
-              <TableCell>Juan Perez</TableCell>
-              <TableCell align="right">3456345336</TableCell>
-              <TableCell align="right">5-2020</TableCell>
-              <TableCell align="right">01/04/2019</TableCell>
-              <TableCell align="right">Ventas</TableCell>
-              <TableCell align="right">Marketing</TableCell>
-              <TableCell align="right">Digital</TableCell>
-              <TableCell align="right">32818181</TableCell>
-              <TableCell align="right">Manager</TableCell>
-              <TableCell align="right">800000 USD</TableCell>
-            </TableRow>
+            {bodyData.map((data, iBData) => (
+              <TableRow key={`table-row-body-${iBData}`} className="t-row-body">
+                {data.map((bodyText, iBDCell) => (
+                  <TableCell
+                    key={`table-row-body-${iBData}-cell-${bodyText}`}
+                    align={iBDCell !== 0 ? "right" : "left"}
+                  >
+                    {bodyText}
+                  </TableCell>
+                ))}
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </TableContainer>
