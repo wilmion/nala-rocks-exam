@@ -10,16 +10,18 @@ import {
   Select,
   SelectProps,
 } from "@material-ui/core";
-import { IMetadataCsv } from "../../interface/app.interfaces";
+
+import type { ILanguaje, IMetadataCsv } from "../../interface/app.interfaces";
 
 interface Props {
   readonly onLoadCsv?: (csv: Array<string[]>) => void;
   readonly onLoadMetadata?: (metadata: IMetadataCsv[]) => void;
   readonly existCSV?: boolean;
+  readonly la: ILanguaje;
 }
 
 export const TableActions = memo<Props>(
-  ({ onLoadCsv, existCSV, onLoadMetadata }) => {
+  ({ onLoadCsv, existCSV, onLoadMetadata, la }) => {
     const [month, setMonth] = useState("");
     const [csvData, setCsvData] = useState<Array<string[]>>([[]]);
 
@@ -133,30 +135,32 @@ export const TableActions = memo<Props>(
 
     return (
       <TableActionsStyled>
-        <h1 className="t-a-title">NALA Organigram</h1>
+        <h1 className="t-a-title">{la.tableActionsTitle}</h1>
         <div className="t-a-btns">
           <Button
             className="t-a-btns__btn"
             variant="outlined"
             disabled={!existCSV}
           >
-            Print
+            {la.tableActionsBtn1}
           </Button>
           <Button
             className="t-a-btns__btn"
             variant="outlined"
             disabled={!existCSV}
           >
-            Export as CSV
+            {la.tableActionsBtn2}
           </Button>
 
           {existCSV && (
             <FormControl>
-              <InputLabel id="month-select-label">Month</InputLabel>
+              <InputLabel id="month-select-label">
+                {la.tableActionsLabelMonth}
+              </InputLabel>
               <Select
                 labelId="month-select-label"
                 id="month-select"
-                label="Month"
+                label={la.tableActionsLabelMonth}
                 className="t-a-control-select"
                 value={month}
                 onChange={handleChangeMonth}
@@ -176,7 +180,7 @@ export const TableActions = memo<Props>(
               variant="contained"
               onClick={handleImportCsv}
             >
-              Import CSV
+              {la.tableActionsBtn3}
             </Button>
           )}
         </div>

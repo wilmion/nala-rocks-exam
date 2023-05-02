@@ -1,5 +1,7 @@
 import React, { useMemo, useState } from "react";
 
+import { English } from "./constant/languaje.constant";
+
 import { PrimordialLayoutStyled } from "./styles/Layouts/primordial-layout.styled";
 
 import { Header } from "./components/Header";
@@ -7,11 +9,12 @@ import { TableActions } from "./components/TableActions";
 import { TableTotal } from "./components/Table/TableTotal";
 import { TableCustom } from "./components/Table";
 
-import type { IMetadataCsv } from "./interface/app.interfaces";
+import type { ILanguaje, IMetadataCsv } from "./interface/app.interfaces";
 
 function App() {
   const [data, setData] = useState<string[][]>([[]]);
   const [metadata, setMetadata] = useState<IMetadataCsv[]>([]);
+  const [languaje, setLanguaje] = useState<ILanguaje>(English);
 
   const existCSV = useMemo(() => {
     return data[0] && data[0].length > 0;
@@ -29,19 +32,20 @@ function App() {
 
   return (
     <div>
-      <Header />
+      <Header onChangeLanguaje={setLanguaje} la={languaje} />
       <PrimordialLayoutStyled>
         <TableActions
           onLoadCsv={setData}
           existCSV={existCSV}
           onLoadMetadata={setMetadata}
+          la={languaje}
         />
         <TableCustom
           headers={data[0]}
           bodyData={bodyData}
           metadata={metadata}
         />
-        <TableTotal total={total} />
+        <TableTotal total={total} la={languaje} />
       </PrimordialLayoutStyled>
     </div>
   );

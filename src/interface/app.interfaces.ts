@@ -3,3 +3,15 @@ export interface IMetadataCsv {
   value: string;
   color: string;
 }
+
+export interface ILanguaje {
+  languajeLabel: string;
+  languajeLabelOpt1: string;
+  languajeLabelOpt2: string;
+  tableActionsTitle: string;
+  tableActionsBtn1: string;
+  tableActionsBtn2: string;
+  tableActionsBtn3: string;
+  tableActionsLabelMonth: string;
+  totalLabel: string;
+}
