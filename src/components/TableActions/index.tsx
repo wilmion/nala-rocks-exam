@@ -14,23 +14,23 @@ import {
 import type { ILanguaje, IMetadataCsv } from "../../interface/app.interfaces";
 
 interface Props {
-  readonly onLoadCsv?: (csv: Array<string[]>) => void;
-  readonly onLoadMetadata?: (metadata: IMetadataCsv[]) => void;
   readonly existCSV?: boolean;
   readonly la: ILanguaje;
+  readonly headers: string[];
+  readonly setHeaders: React.Dispatch<string[]>;
+  readonly onLoadCsv?: (csv: Array<string[]>) => void;
+  readonly onLoadMetadata?: (metadata: IMetadataCsv[]) => void;
 }
 
 export const TableActions = memo<Props>(
-  ({ onLoadCsv, existCSV, onLoadMetadata, la }) => {
+  ({ onLoadCsv, existCSV, onLoadMetadata, la, headers, setHeaders }) => {
     const [month, setMonth] = useState("");
     const [csvData, setCsvData] = useState<Array<string[]>>([[]]);
 
     const months = useMemo(() => {
-      const bodyData = csvData.filter((_, i) => i !== 0);
-
       const result: string[] = [];
 
-      bodyData.forEach((row) => {
+      csvData.forEach((row) => {
         const exist = result.find((r) => r === row[0]);
 
         if (!exist) result.push(row[0]);
@@ -59,7 +59,8 @@ export const TableActions = memo<Props>(
           results.push(information);
         });
 
-        setCsvData(results);
+        setCsvData(results.filter((_, i) => i !== 0));
+        setHeaders(results[0]);
       };
 
       input.onchange = function (event) {
@@ -71,7 +72,7 @@ export const TableActions = memo<Props>(
       };
 
       input.click();
-    }, []);
+    }, [setHeaders]);
 
     const handleChangeMonth: SelectProps["onChange"] = (event) => {
       setMonth(event.target.value as string);
@@ -82,9 +83,8 @@ export const TableActions = memo<Props>(
         const monthToUse = customMonth || month;
 
         const result = csvData.filter((data) => data[0] === monthToUse);
-        const data = [[...csvData[0]], ...result];
 
-        return data;
+        return result;
       },
       [csvData, month]
     );
@@ -188,5 +188,3 @@ export const TableActions = memo<Props>(
     );
   }
 );
-
-TableActions.displayName = "TableActions";

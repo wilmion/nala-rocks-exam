@@ -19,14 +19,34 @@ interface Props {
   readonly headers: string[];
   readonly bodyData: Array<string[]>;
   readonly metadata: IMetadataCsv[];
+  readonly onUpdateHeaders?: (headers: string[]) => void;
 }
 
-export const TableCustom = ({ headers, bodyData, metadata }: Props) => {
+export const TableCustom = ({
+  headers,
+  bodyData,
+  metadata,
+  onUpdateHeaders,
+}: Props) => {
   const findMetadata = (text: string) => {
     const contain = metadata.find((meta) => meta.key === text);
 
     return contain;
   };
+
+  const handleChangeHeader =
+    (text: string): React.FocusEventHandler =>
+    (event) => {
+      const newText = event.target.textContent;
+      const headersCopy = [...headers];
+      const headerIndex = headers.findIndex((header) => header === text);
+
+      if (headerIndex === -1) return;
+
+      headersCopy[headerIndex] = newText?.trim() || "";
+
+      if (onUpdateHeaders) onUpdateHeaders(headersCopy);
+    };
 
   return (
     <TableStyled>
@@ -38,6 +58,8 @@ export const TableCustom = ({ headers, bodyData, metadata }: Props) => {
                 <TableCell
                   key={`table-cell-header-${header}-${index}`}
                   align={index !== 0 ? "right" : "left"}
+                  contentEditable
+                  onBlur={handleChangeHeader(header)}
                 >
                   {header}
                 </TableCell>

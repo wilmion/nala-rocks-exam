@@ -12,7 +12,10 @@ import { TableCustom } from "./components/Table";
 import type { ILanguaje, IMetadataCsv } from "./interface/app.interfaces";
 
 function App() {
+  /* CSV */
   const [data, setData] = useState<string[][]>([[]]);
+  const [headers, setHeaders] = useState<string[]>([]);
+
   const [metadata, setMetadata] = useState<IMetadataCsv[]>([]);
   const [languaje, setLanguaje] = useState<ILanguaje>(English);
 
@@ -20,15 +23,13 @@ function App() {
     return data[0] && data[0].length > 0;
   }, [data]);
 
-  const bodyData = useMemo(() => data.filter((_, i) => i !== 0), [data]);
-
   const total: number = useMemo(() => {
     if (!existCSV) return 0;
 
-    const salaries = bodyData.map((data) => Number(data[4]) || 0);
+    const salaries = data.map((data) => Number(data[4]) || 0);
 
     return salaries.reduce((s1, s2) => s1 + s2);
-  }, [bodyData, existCSV]);
+  }, [data, existCSV]);
 
   return (
     <div>
@@ -39,10 +40,13 @@ function App() {
           existCSV={existCSV}
           onLoadMetadata={setMetadata}
           la={languaje}
+          headers={headers}
+          setHeaders={setHeaders}
         />
         <TableCustom
-          headers={data[0]}
-          bodyData={bodyData}
+          headers={headers}
+          bodyData={data}
+          onUpdateHeaders={setHeaders}
           metadata={metadata}
         />
         <TableTotal total={total} la={languaje} />
