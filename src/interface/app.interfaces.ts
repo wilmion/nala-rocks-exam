@@ -13,5 +13,8 @@ export interface ILanguaje {
   tableActionsBtn2: string;
   tableActionsBtn3: string;
   tableActionsLabelMonth: string;
+  tableActionsModalTitle: string;
+  tableActionsModalbtn1: string;
+  tableActionsModalbtn2: string;
   totalLabel: string;
 }

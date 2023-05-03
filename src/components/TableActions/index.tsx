@@ -1,7 +1,9 @@
 import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
+import { useModal } from "../../hooks/useModal.hook";
 
 import { TableActionsStyled } from "../../styles/components/table-actions.styled";
 
+import { ModalTableActions } from "./ModalTableActions";
 import {
   Button,
   FormControl,
@@ -26,6 +28,9 @@ export const TableActions = memo<Props>(
   ({ onLoadCsv, existCSV, onLoadMetadata, la, onClickExport, setHeaders }) => {
     const [month, setMonth] = useState("");
     const [csvData, setCsvData] = useState<Array<string[]>>([[]]);
+    const [previewCsv, setPreviewCsv] = useState<string>("");
+
+    const { open, handleOpenModal, handleCloseModal } = useModal();
 
     const months = useMemo(() => {
       const result: string[] = [];
@@ -43,6 +48,23 @@ export const TableActions = memo<Props>(
       window.print();
     };
 
+    const handleConfirmCsv = useCallback(() => {
+      const results: Array<string[]> = [];
+
+      const lines = previewCsv.split("\n");
+
+      lines.forEach((line) => {
+        if (line.length === 0) return;
+
+        const information = line.split(",");
+        results.push(information);
+      });
+
+      handleCloseModal();
+      setCsvData(results.filter((_, i) => i !== 0));
+      setHeaders(results[0]);
+    }, [handleCloseModal, previewCsv, setHeaders]);
+
     const handleImportCsv = useCallback(() => {
       const input = document.createElement("input");
       input.type = "file";
@@ -51,20 +73,8 @@ export const TableActions = memo<Props>(
       const reader = new FileReader();
 
       reader.onload = function () {
-        const results: Array<string[]> = [];
-
-        const data = reader.result as string;
-        const lines = data.split("\n");
-
-        lines.forEach((line) => {
-          if (line.length === 0) return;
-
-          const information = line.split(",");
-          results.push(information);
-        });
-
-        setCsvData(results.filter((_, i) => i !== 0));
-        setHeaders(results[0]);
+        setPreviewCsv(reader.result as string);
+        handleOpenModal();
       };
 
       input.onchange = function (event) {
@@ -76,7 +86,7 @@ export const TableActions = memo<Props>(
       };
 
       input.click();
-    }, [setHeaders]);
+    }, [handleOpenModal]);
 
     const handleChangeMonth: SelectProps["onChange"] = (event) => {
       setMonth(event.target.value as string);
@@ -190,6 +200,13 @@ export const TableActions = memo<Props>(
             </Button>
           )}
         </div>
+        <ModalTableActions
+          preview={previewCsv}
+          open={open}
+          handleConfirm={handleConfirmCsv}
+          handleCloseModal={handleCloseModal}
+          la={la}
+        />
       </TableActionsStyled>
     );
   }

@@ -7,6 +7,9 @@ export const Spanish = {
   tableActionsBtn2: "Exportar como CSV",
   tableActionsBtn3: "Importar CSV",
   tableActionsLabelMonth: "Mes",
+  tableActionsModalTitle: "Es correcto el csv",
+  tableActionsModalbtn1: "Si",
+  tableActionsModalbtn2: "No",
   totalLabel: "Total en nómina",
 };
 
@@ -19,5 +22,8 @@ export const English = {
   tableActionsBtn2: "Export as CSV",
   tableActionsBtn3: "Import CSV",
   tableActionsLabelMonth: "Month",
+  tableActionsModalTitle: "It's correct the CSV?",
+  tableActionsModalbtn1: "Yes",
+  tableActionsModalbtn2: "Nope",
   totalLabel: "Total in payroll",
 };
