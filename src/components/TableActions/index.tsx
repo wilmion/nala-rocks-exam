@@ -16,14 +16,14 @@ import type { ILanguaje, IMetadataCsv } from "../../interface/app.interfaces";
 interface Props {
   readonly existCSV?: boolean;
   readonly la: ILanguaje;
-  readonly headers: string[];
   readonly setHeaders: React.Dispatch<string[]>;
   readonly onLoadCsv?: (csv: Array<string[]>) => void;
   readonly onLoadMetadata?: (metadata: IMetadataCsv[]) => void;
+  readonly onClickExport?: () => void;
 }
 
 export const TableActions = memo<Props>(
-  ({ onLoadCsv, existCSV, onLoadMetadata, la, headers, setHeaders }) => {
+  ({ onLoadCsv, existCSV, onLoadMetadata, la, onClickExport, setHeaders }) => {
     const [month, setMonth] = useState("");
     const [csvData, setCsvData] = useState<Array<string[]>>([[]]);
 
@@ -148,6 +148,7 @@ export const TableActions = memo<Props>(
             className="t-a-btns__btn"
             variant="outlined"
             disabled={!existCSV}
+            onClick={onClickExport}
           >
             {la.tableActionsBtn2}
           </Button>

@@ -50,7 +50,7 @@ export const TableCustom = ({
 
   return (
     <TableStyled>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} id="nala-table">
         <Table aria-label="asdaw">
           <TableHead>
             <TableRow>

@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 
 import { English } from "./constant/languaje.constant";
 
@@ -31,6 +31,21 @@ function App() {
     return salaries.reduce((s1, s2) => s1 + s2);
   }, [data, existCSV]);
 
+  const handleExport = useCallback(() => {
+    const dataCopy = [headers, ...data];
+    const rows = dataCopy.map((d) => d.join(","));
+    const csvString = rows.join("\n");
+
+    const blob = new Blob([csvString], { type: "text/csv;charset=utf-8;" });
+    const URI = URL.createObjectURL(blob);
+    const anchor = document.createElement("a");
+
+    anchor.href = URI;
+    anchor.download = "nala-report.csv";
+
+    anchor.click();
+  }, [data, headers]);
+
   return (
     <div>
       <Header onChangeLanguaje={setLanguaje} la={languaje} />
@@ -40,8 +55,8 @@ function App() {
           existCSV={existCSV}
           onLoadMetadata={setMetadata}
           la={languaje}
-          headers={headers}
           setHeaders={setHeaders}
+          onClickExport={handleExport}
         />
         <TableCustom
           headers={headers}
