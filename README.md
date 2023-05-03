@@ -1,8 +1,8 @@
 # Nala Rocks Organigram
 
-Este proyecto es una aplicación web para visualizar y editar organigramas. Este proyecto hace parte de un desafío para [Nala Rocks](https://nala-rocks.netlify.app/)
+Este proyecto es una aplicación web para visualizar y editar organigramas. Este proyecto hace parte de un desafío para [Nala Rocks](https://www.linkedin.com/company/nalarocks/)
 
-El sitio esta deplegado [aquí](https://wilmion.github.io/nala-rocks-exam)
+El sitio esta deplegado [aquí](https://nala-rocks.netlify.app/)
 
 ## Instalación
 
