@@ -1,46 +1,42 @@
-# Getting Started with Create React App
+# Nala Rocks Organigram
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este proyecto es una aplicación web para visualizar y editar organigramas. Este proyecto hace parte de un desafío para [Nala Rocks](https://www.linkedin.com/company/nalarocks/)
 
-## Available Scripts
+## Instalación
 
-In the project directory, you can run:
+Aquí una lista de pasos para la instalación del proyecto:
 
-### `npm start`
+- Clona este repositorio en tu ordenador con el siguiente comando:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```bash
+git clone https://github.com/wilmion/nala-rocks-exam.git
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Es necesario instalar dependencias para el funcionamiento del proyecto.
 
-### `npm test`
+```bash
+npm install # Si usas npm
+yarn install # Si usas yarn
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Ejecución
 
-### `npm run build`
+- Si deseas ejecutarlo en modo desarrollo, ideal si quieres tener la ventaja de **hot realoading**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+npm run start
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Si deseas correr en modo producción, estos son los pasos a seguir:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+npm run build # Primero para compilar el proyecto y servir los archivos estáticos en /build
+npm install -g serve # Puedes saltar este paso si aún no tienes instalado serve como global
+serve -s build # Pondrá el proyecto en http://localhost:3000
+```
 
-### `npm run eject`
+## Agradecimiento
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Principalmente a agradecer a [Nala Rocks](https://www.linkedin.com/company/nalarocks/) por plantear este desafío y poner a prueba mis conocimientos en poco tiempo. Estaré encantado de formar parte de su equipo.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+💛 Aprende para no envejecer 💛
