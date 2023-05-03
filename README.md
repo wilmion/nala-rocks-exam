@@ -2,6 +2,8 @@
 
 Este proyecto es una aplicación web para visualizar y editar organigramas. Este proyecto hace parte de un desafío para [Nala Rocks](https://www.linkedin.com/company/nalarocks/)
 
+El sitio esta deplegado [aquí](https://wilmion.github.io/nala-rocks-exam)
+
 ## Instalación
 
 Aquí una lista de pasos para la instalación del proyecto:
