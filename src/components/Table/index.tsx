@@ -1,6 +1,6 @@
 import React from "react";
 
-import { TableStyled } from "../../styles/components/table.styled";
+import { TableStyled } from "@styles/components/table.styled";
 
 import {
   Paper,
@@ -10,11 +10,11 @@ import {
   Table,
   TableBody,
   TableCell,
-} from "@material-ui/core";
+} from "@mui/material";
 import { TableMetadata } from "./TableMetadata";
+import { TableBodyRowCell } from "./TableBodyRowCell";
 
-import type { IMetadataCsv } from "../../interface/app.interfaces";
-import { TableImage } from "./TableImage";
+import type { IMetadataCsv } from "@interface/app.interfaces";
 
 interface Props {
   readonly headers: string[];
@@ -75,7 +75,7 @@ export const TableCustom = ({
                     key={`table-row-body-${iBData}-cell-${bodyText}-${iBDCell}`}
                     align={iBDCell !== 0 ? "right" : "left"}
                   >
-                    <TableImage index={iBDCell} content={bodyText} />
+                    <TableBodyRowCell index={iBDCell} content={bodyText} />
                     <TableMetadata metadata={findMetadata(bodyText)} />
                   </TableCell>
                 ))}

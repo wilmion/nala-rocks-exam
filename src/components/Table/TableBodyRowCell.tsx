@@ -5,13 +5,13 @@ interface Props {
   readonly index: number;
 }
 
-export const TableImage = ({ content, index }: Props): JSX.Element => {
+export const TableBodyRowCell = ({ content, index }: Props): JSX.Element => {
   const [uriImg, setUriImg] = useState("/logo192.png");
 
   const handleChangeImage = useCallback(() => {
     const input = document.createElement("input");
     input.type = "file";
-    input.accept = ".png";
+    input.accept = "image/*";
 
     const reader = new FileReader();
 

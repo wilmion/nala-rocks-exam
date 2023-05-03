@@ -1,6 +1,6 @@
 import React from "react";
 
-import type { IMetadataCsv } from "../../interface/app.interfaces";
+import type { IMetadataCsv } from "@interface/app.interfaces";
 
 interface Props {
   readonly metadata?: IMetadataCsv;

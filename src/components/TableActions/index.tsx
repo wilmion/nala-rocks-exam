@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
-import { useModal } from "../../hooks/useModal.hook";
+import { useModal } from "@hooks/useModal.hook";
 
-import { TableActionsStyled } from "../../styles/components/table-actions.styled";
+import { TableActionsStyled } from "@styles/components/table-actions.styled";
 
 import { ModalTableActions } from "./ModalTableActions";
 import {
@@ -11,14 +11,14 @@ import {
   MenuItem,
   Select,
   SelectProps,
-} from "@material-ui/core";
+} from "@mui/material";
 
-import type { ILanguaje, IMetadataCsv } from "../../interface/app.interfaces";
+import type { ILanguaje, IMetadataCsv } from "@interface/app.interfaces";
 
 import {
   generatePDFFromElementWithId,
   printFromPDFURI,
-} from "../../utils/pdf-functions";
+} from "@utils/pdf-functions";
 
 interface Props {
   readonly existCSV?: boolean;

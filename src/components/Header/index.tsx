@@ -1,12 +1,12 @@
 import React, { memo, useEffect, useState } from "react";
 
-import { English, Spanish } from "../../constant/languaje.constant";
+import { English, Spanish } from "@constant/languaje.constant";
 
-import { HeaderStyled } from "../../styles/components/header.styled";
+import { HeaderStyled } from "@styles/components/header.styled";
 
-import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
-import type { ILanguaje } from "../../interface/app.interfaces";
+import type { ILanguaje } from "@interface/app.interfaces";
 
 interface Props {
   readonly onChangeLanguaje: (languaje: ILanguaje) => void;

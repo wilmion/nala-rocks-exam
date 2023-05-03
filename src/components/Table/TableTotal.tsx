@@ -1,8 +1,8 @@
 import React from "react";
 
-import { TableTotalStyled } from "../../styles/components/table.styled";
+import { TableTotalStyled } from "@styles/components/table.styled";
 
-import type { ILanguaje } from "../../interface/app.interfaces";
+import type { ILanguaje } from "@interface/app.interfaces";
 
 interface Props {
   readonly total?: number;

@@ -4,7 +4,7 @@ import ReactDOM from "react-dom/client";
 import { themeMui } from "./constant/themes.constant";
 
 import { ThemeProvider } from "styled-components";
-import { CssBaseline } from "@material-ui/core";
+import { CssBaseline } from "@mui/material";
 import App from "./App";
 
 import reportWebVitals from "./reportWebVitals";

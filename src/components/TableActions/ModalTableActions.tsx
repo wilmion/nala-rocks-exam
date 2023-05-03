@@ -1,10 +1,10 @@
 import React from "react";
 
-import { ModalTableActionsStyled } from "../../styles/components/table-actions.styled";
+import { ModalTableActionsStyled } from "@styles/components/table-actions.styled";
 
 import { ModalCustom } from "../Modal";
-import { Button } from "@material-ui/core";
-import { ILanguaje } from "../../interface/app.interfaces";
+import { Button } from "@mui/material";
+import { ILanguaje } from "@interface/app.interfaces";
 
 interface Props {
   readonly open: boolean;
