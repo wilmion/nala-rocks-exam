@@ -14,6 +14,7 @@ import {
 import { TableMetadata } from "./TableMetadata";
 
 import type { IMetadataCsv } from "../../interface/app.interfaces";
+import { TableImage } from "./TableImage";
 
 interface Props {
   readonly headers: string[];
@@ -49,8 +50,8 @@ export const TableCustom = ({
     };
 
   return (
-    <TableStyled>
-      <TableContainer component={Paper} id="nala-table">
+    <TableStyled id="nala-table">
+      <TableContainer component={Paper}>
         <Table aria-label="asdaw">
           <TableHead>
             <TableRow>
@@ -74,7 +75,7 @@ export const TableCustom = ({
                     key={`table-row-body-${iBData}-cell-${bodyText}-${iBDCell}`}
                     align={iBDCell !== 0 ? "right" : "left"}
                   >
-                    {bodyText}
+                    <TableImage index={iBDCell} content={bodyText} />
                     <TableMetadata metadata={findMetadata(bodyText)} />
                   </TableCell>
                 ))}

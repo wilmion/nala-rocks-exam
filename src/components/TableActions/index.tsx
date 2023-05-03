@@ -39,6 +39,10 @@ export const TableActions = memo<Props>(
       return result;
     }, [csvData]);
 
+    const handlePrintTable = () => {
+      window.print();
+    };
+
     const handleImportCsv = useCallback(() => {
       const input = document.createElement("input");
       input.type = "file";
@@ -141,6 +145,7 @@ export const TableActions = memo<Props>(
             className="t-a-btns__btn"
             variant="outlined"
             disabled={!existCSV}
+            onClick={handlePrintTable}
           >
             {la.tableActionsBtn1}
           </Button>

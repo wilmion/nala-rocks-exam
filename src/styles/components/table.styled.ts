@@ -18,6 +18,20 @@ export const TableStyled = styled.section`
     font-size: 12px;
     font-weight: 600;
   }
+
+  .t-row-body-el {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+  }
+
+  .t-row-body-img {
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+    border: solid 1px #1e2432;
+    cursor: pointer;
+  }
 `;
 
 export const TableTotalStyled = styled.section`
