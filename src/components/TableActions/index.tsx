@@ -15,6 +15,11 @@ import {
 
 import type { ILanguaje, IMetadataCsv } from "../../interface/app.interfaces";
 
+import {
+  generatePDFFromElementWithId,
+  printFromPDFURI,
+} from "../../utils/pdf-functions";
+
 interface Props {
   readonly existCSV?: boolean;
   readonly la: ILanguaje;
@@ -44,8 +49,10 @@ export const TableActions = memo<Props>(
       return result;
     }, [csvData]);
 
-    const handlePrintTable = () => {
-      window.print();
+    const handlePrintTable = async () => {
+      const imageURI = await generatePDFFromElementWithId("nala-table");
+
+      printFromPDFURI(imageURI);
     };
 
     const handleConfirmCsv = useCallback(() => {
