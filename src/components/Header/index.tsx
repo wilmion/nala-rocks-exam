@@ -26,7 +26,9 @@ export const Header = memo<Props>(({ onChangeLanguaje, la }) => {
       <img className="h-logo" src="/nala-logo.svg" alt="Go to main page" />
 
       <FormControl>
-        <InputLabel id="languaje-select-label">{la.languajeLabel}</InputLabel>
+        <InputLabel id="languaje-select-label" data-testid="header-label">
+          {la.languajeLabel}
+        </InputLabel>
         <Select
           labelId="languaje-select-label"
           id="languaje-select"
@@ -34,6 +36,7 @@ export const Header = memo<Props>(({ onChangeLanguaje, la }) => {
           className="h-control-select"
           value={languaje}
           onChange={(e) => setLanguaje(e.target.value as number)}
+          data-testid="header-select"
         >
           <MenuItem value={1}>{la.languajeLabelOpt1}</MenuItem>
           <MenuItem value={2}>{la.languajeLabelOpt2}</MenuItem>

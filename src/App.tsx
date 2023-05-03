@@ -15,8 +15,9 @@ function App() {
   /* CSV */
   const [data, setData] = useState<string[][]>([[]]);
   const [headers, setHeaders] = useState<string[]>([]);
-
   const [metadata, setMetadata] = useState<IMetadataCsv[]>([]);
+
+  /* Languaje */
   const [languaje, setLanguaje] = useState<ILanguaje>(English);
 
   const existCSV = useMemo(() => {

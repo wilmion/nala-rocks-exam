@@ -15,7 +15,6 @@
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.1",
     "@types/styled-components": "^5.1.26",
-    "html2pdf.js": "^0.10.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
@@ -26,7 +25,7 @@
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
-    "test": "react-app-rewired test",
+    "test": "react-app-rewired test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -34,6 +33,16 @@
       "react-app",
       "react-app/jest"
     ]
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "^@components(.*)$": "<rootDir>/src/components$1",
+      "^@constant(.*)$": "<rootDir>/src/constant$1",
+      "^@hooks(.*)$": "<rootDir>/src/hooks$1",
+      "^@interface(.*)$": "<rootDir>/src/interface$1",
+      "^@styles(.*)$": "<rootDir>/src/styles$1",
+      "^@utils(.*)$": "<rootDir>/src/utils$1"
+    }
   },
   "browserslist": {
     "production": [

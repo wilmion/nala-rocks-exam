@@ -1,12 +1,10 @@
-// @ts-ignore;
-import html2pdf from "html2pdf.js";
-
 let LAST_IFRAME: HTMLIFrameElement | null = null;
 
 export function generatePDFFromElementWithId(id: string): Promise<string> {
   const element = document.getElementById(id) as HTMLElement;
 
   return new Promise((resolve, reject) => {
+    //@ts-ignore
     html2pdf()
       .from(element)
       .set({
