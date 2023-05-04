@@ -23,8 +23,6 @@ export function generatePDFFromElementWithId(id: string): Promise<string> {
         const blob = new Blob([byteNumbers], { type: "image/jpeg" });
         const blobURI = URL.createObjectURL(blob);
 
-        console.log(blobURI, uri);
-
         resolve(blobURI);
       });
   });

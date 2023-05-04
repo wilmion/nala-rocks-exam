@@ -181,6 +181,7 @@ export const TableActions = memo<Props>(
                 {la.tableActionsLabelMonth}
               </InputLabel>
               <Select
+                data-testid="month-select"
                 labelId="month-select-label"
                 id="month-select"
                 label={la.tableActionsLabelMonth}

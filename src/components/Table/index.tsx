@@ -61,6 +61,8 @@ export const TableCustom = ({
                   align={index !== 0 ? "right" : "left"}
                   contentEditable
                   onBlur={handleChangeHeader(header)}
+                  data-testid="table-header-item"
+                  suppressContentEditableWarning
                 >
                   {header}
                 </TableCell>
@@ -74,6 +76,7 @@ export const TableCustom = ({
                   <TableCell
                     key={`table-row-body-${iBData}-cell-${bodyText}-${iBDCell}`}
                     align={iBDCell !== 0 ? "right" : "left"}
+                    data-testid="table-body-item"
                   >
                     <TableBodyRowCell index={iBDCell} content={bodyText} />
                     <TableMetadata metadata={findMetadata(bodyText)} />

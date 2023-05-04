@@ -43,6 +43,7 @@ export const ModalTableActions = ({
             color="secondary"
             variant="outlined"
             onClick={handleCloseModal}
+            data-testid="btn-modal"
           >
             {la.tableActionsModalbtn2}
           </Button>

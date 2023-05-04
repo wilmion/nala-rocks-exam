@@ -41,6 +41,7 @@ export const TableBodyRowCell = ({ content, index }: Props): JSX.Element => {
           src={uriImg}
           alt="Profile of user"
           onClick={handleChangeImage}
+          data-testid="image-row-body"
         />
       )}
       <span>{content}</span>
