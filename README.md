@@ -21,6 +21,14 @@ npm install # Si usas npm
 yarn install # Si usas yarn
 ```
 
+## Testing
+
+Esta aplicación posee pruebas para verificar que cada parte del código esté en funcionamiento. Para ejecutar las pruebas debes ejecutar:
+
+```bash
+npm run test
+```
+
 ## Ejecución
 
 - Si deseas ejecutarlo en modo desarrollo, ideal si quieres tener la ventaja de **hot realoading**
@@ -35,6 +43,18 @@ npm run start
 npm run build # Primero para compilar el proyecto y servir los archivos estáticos en /build
 npm install -g serve # Puedes saltar este paso si aún no tienes instalado serve como global
 serve -s build # Pondrá el proyecto en http://localhost:3000
+```
+
+## Consideraciones
+
+Los archivos CSV que admite la aplicación siguen este formato:
+
+```csv
+Mes,Nombre,ID,Fecha de ingreso,Sueldo  bruto,División,Area,Subarea,ID Lider,Nivel Jerárquico
+m-yyyy,<string>,<number>,dd/mm/yyyy,<number>,<string>,<string>,<number>,<string>
+m-yyyy,<string>,<number>,dd/mm/yyyy,<number>,<string>,<string>,<number>,<string>
+m-yyyy,<string>,<number>,dd/mm/yyyy,<number>,<string>,<string>,<number>,<string>
+m-yyyy,<string>,<number>,dd/mm/yyyy,<number>,<string>,<string>,<number>,<string>
 ```
 
 ## Agradecimiento
