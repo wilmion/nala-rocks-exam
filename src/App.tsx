@@ -8,6 +8,7 @@ import { Header } from "./components/Header";
 import { TableActions } from "./components/TableActions";
 import { TableTotal } from "./components/Table/TableTotal";
 import { TableCustom } from "./components/Table";
+import { AdviceCSV } from "@components/AdviceCsv";
 
 import type { ILanguaje, IMetadataCsv } from "./interface/app.interfaces";
 
@@ -59,12 +60,18 @@ function App() {
           setHeaders={setHeaders}
           onClickExport={handleExport}
         />
-        <TableCustom
-          headers={headers}
-          bodyData={data}
-          onUpdateHeaders={setHeaders}
-          metadata={metadata}
-        />
+
+        {existCSV ? (
+          <TableCustom
+            headers={headers}
+            bodyData={data}
+            onUpdateHeaders={setHeaders}
+            metadata={metadata}
+          />
+        ) : (
+          <AdviceCSV text={languaje.tableNotCSVHelper} />
+        )}
+
         <TableTotal total={total} la={languaje} />
       </PrimordialLayoutStyled>
     </div>

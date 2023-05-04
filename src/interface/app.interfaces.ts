@@ -8,6 +8,7 @@ export interface ILanguaje {
   languajeLabel: string;
   languajeLabelOpt1: string;
   languajeLabelOpt2: string;
+  tableNotCSVHelper: string;
   tableActionsTitle: string;
   tableActionsBtn1: string;
   tableActionsBtn2: string;
